@@ -3,6 +3,7 @@
 
 body {
   @include flex-center(column, 0);
+  position: relative;
 }
 header {
   @include flex-center();
@@ -113,5 +114,31 @@ main {
       width: 80%;
       border-radius: var(--border-radius);
     }
+  }
+}
+
+.modal-screen {
+  @include flex-center;
+  inset: 0;
+  background: hsla(0, 65%, 88%, 0.736);
+  position: fixed;
+  visibility: hidden;
+
+  &__close-modal {
+    background: none;
+    border: none;
+    width: 1rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    &__img {
+      width: 1rem;
+    }
+  }
+
+  &__modal-content {
+    @include flex-center;
+    width: 50%;
   }
 }

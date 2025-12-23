@@ -59,6 +59,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 0;
+  position: relative;
 }
 
 header {
@@ -166,6 +167,37 @@ main figure img {
   display: block;
   width: 80%;
   border-radius: var(--border-radius);
+}
+
+.modal-screen {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  inset: 0;
+  background: hsla(0, 65%, 88%, 0.736);
+  position: fixed;
+  visibility: hidden;
+}
+.modal-screen__close-modal {
+  background: none;
+  border: none;
+  width: 1rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+.modal-screen__close-modal__img {
+  width: 1rem;
+}
+.modal-screen__modal-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  width: 50%;
 }
 
 /*# sourceMappingURL=style.css.map */
