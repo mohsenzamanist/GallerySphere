@@ -4,141 +4,192 @@
 body {
   @include flex-center(column, 0);
   position: relative;
-}
-header {
-  @include flex-center();
-  justify-content: space-around;
-  width: 100%;
-  margin-top: 1rem;
 
-  button {
-    border: none;
-    background: transparent;
-  }
+  header {
+    @include flex-center();
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 1rem;
 
-  img {
-    width: 2rem;
-  }
-
-  .menu {
-    &__hamburger-button {
+    h1 {
+      font-size: clamp(2rem, 1.2rem + 2vw, 3rem);
     }
 
-    &__off-screen {
-      position: fixed;
-      inset: 0;
-      @include flex-center(column);
-      background-color: var(--secondary-background-color);
-      transform: translate(100%, -100%);
-      transition: transform 0.3s ease;
-
-      &__close-button {
-        position: fixed;
-        top: 1rem;
-        right: auto;
-      }
-
-      &__links {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-        font-size: 4rem;
-
-        :nth-child(1) {
-          button {
-            @include image-inside-text();
-          }
-        }
-
-        :nth-child(2) {
-          button {
-            @include image-inside-text("../img/48.jpg");
-          }
-        }
-
-        :nth-child(3) {
-          button {
-            @include image-inside-text("../img/27.jpg");
-          }
-        }
-
-        :nth-child(4) {
-          button {
-            @include image-inside-text("../img/37.jpg");
-          }
-        }
-
-        &__link-item {
-          margin-bottom: 0.5rem;
-          border-radius: var(--border-radius);
-          padding-inline: 0.5rem;
-
-          &:hover {
-            background-color: var(--hoover-color);
-          }
-          button {
-            all: unset;
-            font-weight: 900;
-          }
-          &--active {
-            background-color: var(--button-active);
-            border-radius: var(--border-radius);
-          }
-        }
-      }
+    button {
+      border: none;
+      background: transparent;
     }
-  }
-
-  .open {
-    .menu__off-screen {
-      transform: translate(0, 0);
-    }
-  }
-}
-
-main {
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-items: center;
-
-  figure {
-    @include flex-center(column);
-    background-color: var(--background-color);
-    padding: var(--base-padding);
-    border-radius: var(--border-radius);
-    width: 80%;
 
     img {
-      display: block;
-      width: 80%;
+      width: 2rem;
+    }
+
+    .menu {
+      &__hamburger-button {
+      }
+
+      &__off-screen {
+        position: fixed;
+        inset: 0;
+        @include flex-center(column);
+        background-color: var(--secondary-background-color);
+        transform: translate(100%, -100%);
+        transition: transform 0.3s ease;
+
+        &__close-button {
+          position: fixed;
+          top: 1rem;
+          right: auto;
+        }
+
+        &__links {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          text-align: center;
+          font-size: 4rem;
+
+          li:nth-child(1) button,
+          li:nth-child(2) button,
+          li:nth-child(3) button,
+          li:nth-child(4) button {
+            @include image-inside-text();
+          }
+
+          &__link-item {
+            margin-bottom: 0.5rem;
+            border-radius: var(--border-radius);
+            padding-inline: 0.5rem;
+
+            button {
+              all: unset;
+              font-weight: 900;
+              font-size: clamp(2rem, 1.2rem + 2vw, 3rem);
+            }
+            &--active {
+              background-color: var(--button-active);
+              border-radius: var(--border-radius);
+            }
+          }
+        }
+      }
+    }
+
+    .open {
+      .menu__off-screen {
+        transform: translate(0, 0);
+      }
+    }
+  }
+
+  @media (width>=40rem) {
+    header {
+      @include flex-center(column);
+      button {
+        visibility: hidden;
+      }
+
+      .menu {
+        &__off-screen {
+          @include flex-center;
+          position: static;
+          inset: auto;
+          transform: none;
+          width: 100vw;
+          padding: 0;
+          margin: 0;
+          gap: 0;
+
+          &__close-button {
+            position: static;
+            top: auto;
+            right: auto;
+          }
+
+          button {
+            font-weight: 600;
+          }
+
+          &__links {
+            @include flex-center(row, 1rem);
+
+            &__link-item {
+              margin: 0.8rem 0;
+
+              &:hover {
+                background-color: var(--hoover-color);
+              }
+
+              &--active {
+                background-color: var(--button-active);
+              }
+            }
+
+            li:nth-child(1) button,
+            li:nth-child(2) button,
+            li:nth-child(3) button,
+            li:nth-child(4) button {
+              @include reset-image-inside-text;
+              padding: 0 0.8rem;
+              vertical-align: middle;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  main {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+
+    @media (width>=40rem) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (width>=60rem) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    figure {
+      @include flex-center(column);
+      background-color: var(--background-color);
+      padding: var(--base-padding);
       border-radius: var(--border-radius);
-    }
-  }
-}
+      width: 80%;
 
-.modal-screen {
-  @include flex-center;
-  inset: 0;
-  background: hsla(0, 65%, 88%, 0.736);
-  position: fixed;
-  visibility: hidden;
-
-  &__close-modal {
-    background: none;
-    border: none;
-    width: 1rem;
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-
-    &__img {
-      width: 1rem;
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        border-radius: var(--border-radius);
+      }
     }
   }
 
-  &__modal-content {
+  .modal-screen {
     @include flex-center;
-    width: 50%;
+    inset: 0;
+    background: hsla(0, 65%, 88%, 0.736);
+    position: fixed;
+    visibility: hidden;
+
+    &__close-modal {
+      background: none;
+      border: none;
+      width: 1rem;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+
+      &__img {
+        width: 1rem;
+      }
+    }
+
+    &__modal-content {
+      @include flex-center;
+      width: 50%;
+    }
   }
 }

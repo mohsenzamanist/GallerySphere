@@ -12,3 +12,9 @@
   background-clip: text;
   color: transparent;
 }
+
+@mixin reset-image-inside-text() {
+  background-image: none;
+  color: black;
+  font-size: 2rem;
+}

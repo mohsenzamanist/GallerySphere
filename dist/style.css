@@ -61,8 +61,7 @@ body {
   gap: 0;
   position: relative;
 }
-
-header {
+body header {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -72,14 +71,17 @@ header {
   width: 100%;
   margin-top: 1rem;
 }
-header button {
+body header h1 {
+  font-size: clamp(2rem, 1.2rem + 2vw, 3rem);
+}
+body header button {
   border: none;
   background: transparent;
 }
-header img {
+body header img {
   width: 2rem;
 }
-header .menu__off-screen {
+body header .menu__off-screen {
   position: fixed;
   inset: 0;
   display: flex;
@@ -91,68 +93,120 @@ header .menu__off-screen {
   transform: translate(100%, -100%);
   transition: transform 0.3s ease;
 }
-header .menu__off-screen__close-button {
+body header .menu__off-screen__close-button {
   position: fixed;
   top: 1rem;
   right: auto;
 }
-header .menu__off-screen__links {
+body header .menu__off-screen__links {
   list-style: none;
   margin: 0;
   padding: 0;
   text-align: center;
   font-size: 4rem;
 }
-header .menu__off-screen__links :nth-child(1) button {
+body header .menu__off-screen__links li:nth-child(1) button,
+body header .menu__off-screen__links li:nth-child(2) button,
+body header .menu__off-screen__links li:nth-child(3) button,
+body header .menu__off-screen__links li:nth-child(4) button {
   background-image: url("../../img/3.jpg");
   background-size: contain;
   background-clip: text;
   color: transparent;
 }
-header .menu__off-screen__links :nth-child(2) button {
-  background-image: url("../img/48.jpg");
-  background-size: contain;
-  background-clip: text;
-  color: transparent;
-}
-header .menu__off-screen__links :nth-child(3) button {
-  background-image: url("../img/27.jpg");
-  background-size: contain;
-  background-clip: text;
-  color: transparent;
-}
-header .menu__off-screen__links :nth-child(4) button {
-  background-image: url("../img/37.jpg");
-  background-size: contain;
-  background-clip: text;
-  color: transparent;
-}
-header .menu__off-screen__links__link-item {
+body header .menu__off-screen__links__link-item {
   margin-bottom: 0.5rem;
   border-radius: var(--border-radius);
   padding-inline: 0.5rem;
 }
-header .menu__off-screen__links__link-item:hover {
-  background-color: var(--hoover-color);
-}
-header .menu__off-screen__links__link-item button {
+body header .menu__off-screen__links__link-item button {
   all: unset;
   font-weight: 900;
+  font-size: clamp(2rem, 1.2rem + 2vw, 3rem);
 }
-header .menu__off-screen__links__link-item--active {
+body header .menu__off-screen__links__link-item--active {
   background-color: var(--button-active);
   border-radius: var(--border-radius);
 }
-header .open .menu__off-screen {
+body header .open .menu__off-screen {
   transform: translate(0, 0);
 }
-
-main {
+@media (width >= 40rem) {
+  body header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+  }
+  body header button {
+    visibility: hidden;
+  }
+  body header .menu__off-screen {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    position: static;
+    inset: auto;
+    transform: none;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    gap: 0;
+  }
+  body header .menu__off-screen__close-button {
+    position: static;
+    top: auto;
+    right: auto;
+  }
+  body header .menu__off-screen button {
+    font-weight: 600;
+  }
+  body header .menu__off-screen__links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  body header .menu__off-screen__links__link-item {
+    margin: 0.8rem 0;
+  }
+  body header .menu__off-screen__links__link-item:hover {
+    background-color: var(--hoover-color);
+  }
+  body header .menu__off-screen__links__link-item--active {
+    background-color: var(--button-active);
+  }
+  body header .menu__off-screen__links li:nth-child(1) button,
+  body header .menu__off-screen__links li:nth-child(2) button,
+  body header .menu__off-screen__links li:nth-child(3) button,
+  body header .menu__off-screen__links li:nth-child(4) button {
+    background-image: none;
+    color: black;
+    font-size: 2rem;
+    padding: 0 0.8rem;
+    vertical-align: middle;
+  }
+}
+body main {
   display: grid;
   grid-template-columns: 1fr;
   justify-items: center;
 }
-main figure {
+@media (width >= 40rem) {
+  body main {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (width >= 60rem) {
+  body main {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+body main figure {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -163,13 +217,13 @@ main figure {
   border-radius: var(--border-radius);
   width: 80%;
 }
-main figure img {
+body main figure img {
   display: block;
-  width: 80%;
+  max-width: 100%;
+  height: auto;
   border-radius: var(--border-radius);
 }
-
-.modal-screen {
+body .modal-screen {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -180,7 +234,7 @@ main figure img {
   position: fixed;
   visibility: hidden;
 }
-.modal-screen__close-modal {
+body .modal-screen__close-modal {
   background: none;
   border: none;
   width: 1rem;
@@ -188,10 +242,10 @@ main figure img {
   top: 1rem;
   right: 1rem;
 }
-.modal-screen__close-modal__img {
+body .modal-screen__close-modal__img {
   width: 1rem;
 }
-.modal-screen__modal-content {
+body .modal-screen__modal-content {
   display: flex;
   flex-direction: row;
   justify-content: center;
