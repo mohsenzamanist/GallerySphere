@@ -2,9 +2,10 @@ import { captions } from "./caption.js";
 
 const main = document.querySelector("main");
 const hamburgerBtn = document.querySelector("#menu__hamburger-button");
-const closeBtn = document.querySelector("#menu__off-screen__close-button");
+const menuCloseBtn = document.querySelector("#menu__off-screen__close-button");
 const nav = document.querySelector("header nav");
 const modalScreen = document.querySelector("#modal-screen");
+const closeModalBtn = document.querySelector("#close-modal");
 const modalContent = document.querySelector("#modal-screen div");
 const menuLinks = document.querySelector("#menu__off-screen__links");
 
@@ -29,7 +30,7 @@ hamburgerBtn.addEventListener("click", () => {
   nav.classList.add("open");
 });
 
-closeBtn.addEventListener("click", () => {
+menuCloseBtn.addEventListener("click", () => {
   nav.classList.remove("open");
 });
 
@@ -37,7 +38,7 @@ modalContent.addEventListener("click", (e) => {
   e.stopPropagation();
 });
 
-modalScreen.addEventListener("click", () => {
+closeModalBtn.addEventListener("click", () => {
   modalScreen.style.visibility = "hidden";
 });
 
