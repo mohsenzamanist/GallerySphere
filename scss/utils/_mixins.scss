@@ -10,7 +10,6 @@
   background-image: url($url);
   background-size: contain;
   background-clip: text;
-  color: transparent;
 }
 
 @mixin reset-image-inside-text() {
